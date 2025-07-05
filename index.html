@@ -208,5 +208,20 @@
       });
     }
   </script>
+  <script>
+  function acceptConsent() {
+    localStorage.setItem("consentAccepted", "yes");
+    document.getElementById("consentModalBackdrop").style.display = "none";
+  }
+
+  // Show the modal only if user hasn't accepted yet
+  window.addEventListener("load", () => {
+    if (localStorage.getItem("consentAccepted") !== "yes") {
+      document.getElementById("consentModalBackdrop").style.display = "flex";
+    } else {
+      document.getElementById("consentModalBackdrop").style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
