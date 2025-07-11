@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>YouTube Music Queue Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  
   <style>
     body {
       background-color: #121212;
@@ -49,6 +51,27 @@
 </script>
 </head>
 <body>
+
+  <h2>Free IPTV Player (HLS.js)</h2>
+  <video id="video" controls autoplay width="720" height="405" style="background:#000;"></video>
+  <br/>
+  <button onclick="loadStream('https://edge1.socialtv.live:8081/pbo/tracks-v1a1/mono.m3u8')">PBO</button>
+  <button onclick="loadStream('https://gmanewsstream.akamaized.net/hls/live/2030462/gmanews/master.m3u8')">GMA News</button>
+  <script>
+    const video = document.getElementById('video');
+    const hls = new Hls();
+    function loadStream(url) {
+      hls.loadSource(url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    }
+
+    // auto play PBO
+    loadStream('https://edge1.socialtv.live:8081/pbo/tracks-v1a1/mono.m3u8');
+  </script>
+  
   <a href="https://www.popads.net/users/refer/3584331"><img src="http://banners.popads.net/728x90.gif" alt="PopAds.net - The Best Popunder Adnetwork" /></a>
   <h1>YouTube Music Queue Player</h1>
 
